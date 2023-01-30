@@ -61,7 +61,6 @@ RUN ./scripts/install_full.sh \
         | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
         | sort -u \
         | xargs -r apk info --installed \
-        | sort -u \
     )" \
  && apk add --virtual .rundeps $runDeps
 
