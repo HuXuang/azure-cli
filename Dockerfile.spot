@@ -40,8 +40,15 @@ RUN /bin/bash -c 'TMP_PKG_DIR=$(mktemp -d); \
     [ -d privates ] && cp privates/*.whl $TMP_PKG_DIR; \
     all_modules=`find $TMP_PKG_DIR -name "*.whl"`; \
     pip install --no-cache-dir $all_modules;' \
- && cat /azure-cli/az.completion > ~/.bashrc
+ && cat /azure-cli/az.completion > ~/.bashrc && cat /azure-cli/az.completion > ~/.bashrc && cat /azure-cli/az.completion > ~/.bashrc && cat /azure-cli/az.completion > ~/.bashrc
 
+RUN /bin/bash -c 'TMP_PKG_DIR=$(mktemp -d); \
+    for d in src/azure-cli src/azure-cli-core src/command_modules/azure-cli-*/; \
+    do cd $d; echo $d; python setup.py bdist_wheel -d $TMP_PKG_DIR; cd -; \
+    done; \
+    [ -d privates ] && cp privates/*.whl $TMP_PKG_DIR; \
+    all_modules=`find $TMP_PKG_DIR -name "*.whl"`; \
+    pip install --no-cache-dir $all_modules;' \
 WORKDIR /
 
 RUN rm -rf azure-cli
