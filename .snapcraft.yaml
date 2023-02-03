@@ -26,6 +26,9 @@ parts:
     stage-packages:
       - libffi6
       - libssl1.0.0
+      - libssl1.0.0
+      - libssl1.0.0
+      - libssl1.0.0
     requirements: requirements.txt
     install: |
       python_packages="src/azure-cli-core src/command_modules/azure-cli*"
